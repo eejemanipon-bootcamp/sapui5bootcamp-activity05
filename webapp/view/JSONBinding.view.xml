@@ -1,0 +1,183 @@
+<mvc:View controllerName="com.ui5.trng.sapui5bootcampactivity05.controller.JSONBinding"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form">
+    <Page id="pageJSONBinding" title="{i18n>title}">
+        <content>
+            <Panel width="auto" class="sapUiResponsiveMargin">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="{i18n>dataBinding.title}"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <content>
+                    <VBox class="sapUiSmallMargin">
+                        <f:SimpleForm id="formHeaderDetails"
+                            editable="true"
+                            layout="ResponsiveGridLayout"
+                            labelSpanXL="3"
+                            labelSpanL="3"
+                            labelSpanM="3"
+                            labelSpanS="12"
+                            adjustLabelSpan="false"
+                            emptySpanXL="4"
+                            emptySpanL="4"
+                            emptySpanM="4"
+                            emptySpanS="0"
+                            columnsXL="1"
+                            columnsL="1"
+                            columnsM="1"
+                            singleContainerFullSize="false" >
+                            <f:content>
+                                <Label text="{i18n>eid}" labelFor="inpEID"/>
+                                <Input id="inpEID" value="{employeesModel>/EID}" enabled="{employeesModel>/Enabled}"/>
+                                <Label text="{i18n>enabled}" labelFor="cbEnabled"/>
+                                <CheckBox id="cbEnabled" selected="{employeesModel>/Enabled}" />
+                            </f:content>
+                        </f:SimpleForm>
+                    </VBox>
+                </content>
+            </Panel>
+            <Panel width="auto" class="sapUiResponsiveMargin">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="{i18n>addressDetails.title}"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <content>
+                    <VBox class="sapUiSmallMargin">
+                        <f:SimpleForm id="formAddressDetails"
+                            editable="true"
+                            layout="ResponsiveGridLayout"
+                            labelSpanXL="3"
+                            labelSpanL="3"
+                            labelSpanM="3"
+                            labelSpanS="12"
+                            adjustLabelSpan="false"
+                            emptySpanXL="4"
+                            emptySpanL="4"
+                            emptySpanM="4"
+                            emptySpanS="0"
+                            columnsXL="1"
+                            columnsL="1"
+                            columnsM="1"
+                            singleContainerFullSize="false" >
+                            <f:content>
+                                <Label text="{i18n>address}" labelFor="txtAddress"/>
+                                <Text id="txtAddress" 
+                                    class="sapUiSmallMarginBottom" 
+                                    text="{employeesMockModel>/Address/Street} {employeesMockModel>/Address/City} {employeesMockModel>/Address/Country}"/>
+                                <Link id="linkSendEmail" 
+                                    text="{i18n>sendEmail}" 
+                                    href="{ path: 'employeesMockModel>/EID', formatter: '.formatter.formatMail' }"/>
+                                <Label class="sapUiSmallMarginBegin" text="{i18n>salesAmount}" labelFor="txtSalesAmount"/>
+                                <Input id="txtSalesAmount" 
+                                    class="sapUiSmallMarginBegin" 
+                                    maxLength="10" 
+                                    enabled="{employeesMockModel>/Enabled}" 
+                                    description="{employeesMockModel>/CurrencyCode}" 
+                                    value="{ parts: [ {path: 'employeesMockModel>/SalesAmount'}, {path: 'employeesMockModel>/CurrencyCode'} ], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"/>
+                            </f:content>
+                        </f:SimpleForm>
+                    </VBox>
+                </content>
+            </Panel>
+            <Panel width="auto" class="sapUiResponsiveMargin">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="{i18n>aggrBinding.title}"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <content>
+                    <VBox class="sapUiSmallMargin">
+                        <f:SimpleForm id="formAggrBinding"
+                            editable="true"
+                            layout="ResponsiveGridLayout"
+                            labelSpanXL="3"
+                            labelSpanL="3"
+                            labelSpanM="3"
+                            labelSpanS="12"
+                            adjustLabelSpan="false"
+                            columnsXL="1"
+                            columnsL="1"
+                            columnsM="1"
+                            singleContainerFullSize="false" >
+                            <f:content>
+                                <List
+                                    items="{productsModel>/Products}">
+                                    <ObjectListItem
+                                        title="{productsModel>ProductName}"
+                                        type="Active"
+                                        press="onListItemPress"
+                                        number="{
+                                            parts: [ {path: 'productsModel>UnitPrice'}, {path: 'productsModel>/CurrencyCode'} ],
+                                            type: 'sap.ui.model.type.Currency',
+                                            formatOptions: {showMeasure: false}
+                                        }"
+                                        numberUnit="{productsModel>/CurrencyCode}">
+                                        <ObjectAttribute text="{i18n>stockOnHand}: {productsModel>QuantityPerUnit}" />
+                                        <ObjectAttribute title="{i18n>cStockValue}" 
+                                                         text="{ 
+                                                            parts: [ {path: 'productsModel>UnitPrice'}, {path: 'productsModel>UnitsInStock'}, {path: 'productsModel>/CurrencyCode'} ], 
+                                                            formatter: '.formatter.formatStockValue' 
+                                                        }" />
+                                    </ObjectListItem>
+                                </List>
+                            </f:content>
+                        </f:SimpleForm>
+                    </VBox>
+                </content>
+            </Panel>
+            <Panel width="auto" class="sapUiResponsiveMargin">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="{i18n>productDetails.title}"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <content>
+                    <VBox class="sapUiSmallMargin">
+                        <f:SimpleForm id="formProductDetails"
+                            editable="true"
+                            layout="ResponsiveGridLayout"
+                            labelSpanXL="3"
+                            labelSpanL="3"
+                            labelSpanM="3"
+                            labelSpanS="12"
+                            adjustLabelSpan="false"
+                            emptySpanXL="4"
+                            emptySpanL="4"
+                            emptySpanM="4"
+                            emptySpanS="0"
+                            columnsXL="1"
+                            columnsL="1"
+                            columnsM="1"
+                            singleContainerFullSize="false" >
+                            <f:content>
+                                <Label text="{i18n>productID}" labelFor="inpProductID"/>
+                                <Input id="inpProductID" value="{productsModel>ProductID}" enabled="false"/>
+                                <Label text="{i18n>productName}" labelFor="inpProductName"/>
+                                <Input id="inpProductName" value="{productsModel>ProductName}" enabled="false"/>
+                                <Label text="{i18n>supplierID}" labelFor="inpSupplierID"/>
+                                <Input id="inpSupplierID" value="{productsModel>SupplierID}" enabled="false"/>
+                                <Label text="{i18n>categoryID}" labelFor="inpCategoryID"/>
+                                <Input id="inpCategoryID" value="{productsModel>CategoryID}" enabled="false"/>
+                                <Label text="{i18n>qPerUnit}" labelFor="inpQPerUnit"/>
+                                <Input id="inpQPerUnit" value="{productsModel>QuantityPerUnit}" enabled="false"/>
+                                <Label text="{i18n>unitPrice}" labelFor="inpUnitPrice"/>
+                                <Input id="inpUnitPrice" value="{productsModel>UnitPrice}" enabled="false"/>
+                                <Label text="{i18n>unitInStock}" labelFor="inpUnitInStock"/>
+                                <Input id="inpUnitInStock" value="{productsModel>UnitsInStock}" enabled="false"/>
+                                <Label text="{i18n>unitOnOrder}" labelFor="inpUnitsOnOrder"/>
+                                <Input id="inpUnitsOnOrder" value="{productsModel>UnitsOnOrder}" enabled="false"/>
+                                <Label text="{i18n>reorderLevel}" labelFor="inpReorderLvl"/>
+                                <Input id="inpReorderLvl" value="{productsModel>ReorderLevel}" enabled="false"/>
+                                <Label text="{i18n>discontinued}" labelFor="inpDiscontinued"/>
+                                <Input id="inpDiscontinued" value="{productsModel>Discontinued}" enabled="false"/>
+                            </f:content>
+                        </f:SimpleForm>
+                    </VBox>
+                </content>
+            </Panel>
+        </content>
+    </Page>
+</mvc:View>

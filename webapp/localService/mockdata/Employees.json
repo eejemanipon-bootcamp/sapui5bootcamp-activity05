@@ -1,0 +1,12 @@
+{
+    "EID": "eeje.manipon",
+    "Enabled": false,
+    "Address": {
+        "Street": "San Roque",
+        "City": "San Jacinto",
+        "Zip": "2431",
+        "Country": "Philippines"
+    },
+    "SalesAmount": 999999,
+    "CurrencyCode": "Php"
+}
